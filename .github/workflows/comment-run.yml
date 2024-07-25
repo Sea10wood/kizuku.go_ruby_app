@@ -19,12 +19,11 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: npm install -g lighthouse
+        run: npm install -g @lhci/cli
 
-      - name: Run Lighthouse
-        run: |
-          lighthouse https://example.com --output html --output-path ./lighthouse-report.html
-          
+      - name: Run Lighthouse CI
+        run: lhci autorun --url=https://example.com --output-path=./lighthouse-report.html
+
       - name: Upload Lighthouse Report
         uses: actions/upload-artifact@v3
         with:
