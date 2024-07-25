@@ -44,9 +44,9 @@
   
   .content {
     margin-top: 60px; /* ヘッダーの高さ分だけ余白を確保 */
-    padding-bottom: 60px; /* フォームの高さ分だけ余白を確保 */
-    height: calc(100vh - 120px); /* ヘッダーとフォームの高さを引いた残りの高さ */
+    height: 80vh; /* ヘッダーとフォームの高さを引いた残りの高さ */
     overflow-y: auto; /* スクロール可能 */
+    padding: 16px;
   }
   
   .fixed-bottom-form {
@@ -87,3 +87,14 @@
     outline: none; /* フォーカス時のデフォルトのアウトラインを削除 */
   }
   
+  .btn-submit {
+    background: none; /* 背景なし */
+    border: none; /* ボーダーなし */
+    padding: 0; /* パディングなし */
+    cursor: pointer; /* カーソルをポインタに */
+  }
+  
+  .send-icon {
+    width: 24px; /* 画像の幅 */
+    height: 24px; /* 画像の高さ */
+  }

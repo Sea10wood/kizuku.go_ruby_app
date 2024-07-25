@@ -24,10 +24,12 @@
 
   <div class="horizontal-form">
     <div class="form-group">
-      <%= form.text_area :content %>
+      <%= form.text_area :content , placeholder: "Gopher以外は書き込み厳禁ですよ"%>
     </div>
     <div class="form-submit">
-      <%= form.submit %>
-    </div>
+  <%= button_tag(type: 'submit', class: 'btn-submit') do %>
+    <%= image_tag 'send.png', alt: 'Send', class: 'send-icon' %>
+  <% end %>
+  </div>
   </div>
 <% end %>
