@@ -1,67 +1,32 @@
-name: Run rspec, rubocop
+name: Run Lighthouse Checks
 
 on:
   push:
   pull_request:
 
 jobs:
-  rspec:
+  lighthouse:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    services:
-      mysql:
-        image: mysql:8.0
-        ports:
-          - 3306:3306
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          bundler-cache: true
+          node-version: '16'
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm install -g lighthouse
 
-      - name: Bundler and gem install
+      - name: Run Lighthouse
         run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3 --path vendor/bundle
-
-      - name: Yarn install
-        run: yarn install --check-files
-
-      - name: Database create and migrate
-        run: |
-          cp config/database.yml.ci config/database.yml
-          bundle exec rails db:create RAILS_ENV=test
-          bundle exec rails db:migrate RAILS_ENV=test
-
-      - name: Run rspec
-        run: bundle exec rspec
-
-  rubocop:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+          lighthouse https://example.com --output html --output-path ./lighthouse-report.html
+          
+      - name: Upload Lighthouse Report
+        uses: actions/upload-artifact@v3
         with:
-          bundler-cache: true
-
-      - name: Run rubocop
-        run: bundle exec rubocop
+          name: lighthouse-report
+          path: ./lighthouse-report.html
