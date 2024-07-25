@@ -1,12 +1,13 @@
-<h1>Posts</h1>
+<header class="page-header">
+  <h3>🎲　Kizuku.go　🎲</h3>
+</header>
 
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
+<div class="content">
+  <div id="posts">
+    <% @posts.each do |post| %>
+      <%= render post %>
+    <% end %>
+  </div>
 </div>
 
 <%= form_with(model: @post, remote: true, html: { class: 'fixed-bottom-form' }) do |form| %>
@@ -21,12 +22,12 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="horizontal-form">
+    <div class="form-group">
+      <%= form.text_area :content %>
+    </div>
+    <div class="form-submit">
+      <%= form.submit %>
+    </div>
   </div>
 <% end %>
