@@ -1,5 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Posts</h1>
 
 <div id="posts">
@@ -10,5 +8,27 @@
     </p>
   <% end %>
 </div>
+
+<%= form_with(model: @post, remote: true, html: { data: { remote: true } }) do |form| %>
+  <% if @post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+        <% @post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
 
 <%= link_to "New post", new_post_path %>
