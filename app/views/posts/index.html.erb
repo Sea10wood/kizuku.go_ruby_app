@@ -9,7 +9,7 @@
   <% end %>
 </div>
 
-<%= form_with(model: @post, remote: true, html: { data: { remote: true } }) do |form| %>
+<%= form_with(model: @post, remote: true, html: { class: 'fixed-bottom-form' }) do |form| %>
   <% if @post.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -30,5 +30,3 @@
     <%= form.submit %>
   </div>
 <% end %>
-
-<%= link_to "New post", new_post_path %>

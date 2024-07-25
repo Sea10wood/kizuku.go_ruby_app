@@ -1,8 +1,7 @@
-<%= form_with(model: post) do |form| %>
+<%= form_with(model: post, class: 'horizontal-form') do |form| %>
   <% if post.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
       <ul>
         <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,12 +10,12 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
+  <div class="form-group">
+    <%= form.label :content, style: "display: none" %>
+    <%= form.text_area :content, rows: 1, style: "flex: 1;" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-submit">
+    <%= form.submit "Post", class: "btn btn-primary" %>
   </div>
 <% end %>
