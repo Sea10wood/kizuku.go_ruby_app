@@ -1,17 +1,31 @@
-name: "Comment run"
+name: Run Lighthouse Checks
+
 on:
-  issue_comment:
-    types: [created, edited]
+  push:
+  pull_request:
 
 jobs:
-  comment-run:
-    runs-on: ubuntu-22.04
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
     steps:
-    - uses: actions/checkout@v4
-      with:
-        # 0 indicates all history
-        fetch-depth: 0
-    - uses: nwtgck/actions-comment-run@v3
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        allowed-associations: '["OWNER"]'
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install -g @lhci/cli
+
+      - name: Run Lighthouse CI
+        run: lhci autorun --url=https://example.com --output-path=./lighthouse-report.html
+
+      - name: Upload Lighthouse Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: lighthouse-report
+          path: ./lighthouse-report.html

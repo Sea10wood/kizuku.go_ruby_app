@@ -13,3 +13,88 @@
  *= require_tree .
  *= require_self
  */
+
+ html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #F7EEDD;
+  }
+  h3 {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .page-header {
+    background-color: #008DDA; /* ヘッダーの背景色 */
+    padding: 8px;
+    border-bottom: 1px solid #dee2e6; /* ヘッダーの下に境界線を追加 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ヘッダーの下に影を追加 */
+    display: flex;
+    justify-content: center; /* 水平方向に中央揃え */
+    align-items: center; /* 垂直方向に中央揃え */
+    text-align: center;
+    gap: 8px;
+    position: fixed; /* 固定表示 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 28px; /* 高さを調整 */
+    z-index: 1000; /* 他の要素の上に表示 */
+  }
+  
+  .content {
+    margin-top: 60px; /* ヘッダーの高さ分だけ余白を確保 */
+    height: 80vh; /* ヘッダーとフォームの高さを引いた残りの高さ */
+    overflow-y: auto; /* スクロール可能 */
+    padding: 16px;
+  }
+  
+  .fixed-bottom-form {
+    position: fixed; /* 画面下部に固定表示 */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ACE2E1;
+    padding: 4px 16px;
+    border-top: 1px solid #dee2e6;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* 他の要素の上に表示 */
+  }
+  
+  .horizontal-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .horizontal-form .form-group {
+    margin: 0;
+  }
+  
+  .horizontal-form .form-submit {
+    margin-left: 10px;
+  }
+  
+  .horizontal-form textarea {
+    width: 80vw; 
+    box-sizing: border-box; 
+    resize: none; 
+    border-radius: 4px;
+  }
+  
+  .horizontal-form textarea:focus {
+    border-color: #008DDA; 
+    outline: none; 
+  }
+  
+  .btn-submit {
+    background: none; 
+    border: none; 
+    padding: 0; 
+    cursor: pointer; 
+  }
+  
+  .send-icon {
+    width: 24px; 
+    height: 24px; 
+  }
