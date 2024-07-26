@@ -1,4 +1,6 @@
 import Rails from "@rails/ujs";
+import './auto_update';
+
 Rails.start();
 
 document.addEventListener("DOMContentLoaded", () => {

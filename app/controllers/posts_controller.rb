@@ -59,6 +59,14 @@ class PostsController < ApplicationController
     end
   end
 
+    def auto_update
+      latest_id = params[:latest_id].to_i
+      new_posts = Post.where("id > ?", latest_id)
+      
+      render json: { new_posts: new_posts }
+    end
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post

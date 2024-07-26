@@ -55,7 +55,7 @@
     left: 0;
     width: 100%;
     background-color: #ACE2E1;
-    padding: 4px;
+    padding: 4px 16px;
     border-top: 1px solid #dee2e6;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000; /* 他の要素の上に表示 */
@@ -76,25 +76,25 @@
   }
   
   .horizontal-form textarea {
-    width: 80vw; /* テキストエリアの幅を広げる */
-    box-sizing: border-box; /* ボーダーとパディングを含めて幅を計算 */
-    resize: none; /* ユーザーがサイズを変更できないようにする（オプション） */
+    width: 80vw; 
+    box-sizing: border-box; 
+    resize: none; 
     border-radius: 4px;
   }
   
   .horizontal-form textarea:focus {
-    border-color: #008DDA; /* フォーカス時のボーダー色 */
-    outline: none; /* フォーカス時のデフォルトのアウトラインを削除 */
+    border-color: #008DDA; 
+    outline: none; 
   }
   
   .btn-submit {
-    background: none; /* 背景なし */
-    border: none; /* ボーダーなし */
-    padding: 0; /* パディングなし */
-    cursor: pointer; /* カーソルをポインタに */
+    background: none; 
+    border: none; 
+    padding: 0; 
+    cursor: pointer; 
   }
   
   .send-icon {
-    width: 24px; /* 画像の幅 */
-    height: 24px; /* 画像の高さ */
+    width: 24px; 
+    height: 24px; 
   }
