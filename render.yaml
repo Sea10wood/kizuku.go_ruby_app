@@ -1,0 +1,22 @@
+databases:
+  - name: kizuku.go_app
+    databaseName: kizuku
+    user: kizuku
+    region: oregon
+
+services:
+  - type: web
+    name: kizuku.go_ruby_app
+    env: ruby
+    region: oregon
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: kizuku.go_app
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+
